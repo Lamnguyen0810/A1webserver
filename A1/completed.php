@@ -40,7 +40,7 @@ $finalScore = $_SESSION['count'] ?? 0;
   <div class="result-box">
     <h2>🎉 Game Completed!</h2>
     <p>Thank you for playing, <strong><?= htmlspecialchars($name) ?></strong>!</p>
-    <p>Your final score this session was:</p>
+    <p>Your final score for this game was:</p>
     <h3><?= $finalScore ?></h3>
 
     <a href="restart.php" class="button">Restart</a>

@@ -76,8 +76,8 @@ foreach ($qtspick_key as $k) {
 </head>
 <body>
 <div class="container">
-    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?></h2>
-    <h3>Number Questions</h3>
+    <h2>Welcome to Math Quiz, <?php echo htmlspecialchars($_SESSION['name']); ?></h2>
+    <h3>Your Questions :</h3>
   <form method="post" action="result.php">
         <?php foreach ($pickqts as $v): ?>
             <p><strong><?php echo $v['qts']; ?></strong></p>

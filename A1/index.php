@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>quiz game testing</title>
+<title>Learning Game</title>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -54,14 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 <div class="container">
-<h2>Quiz Game</h2>
+<h2>Welcome to Learning Game</h2>
 <form method="POST">
-    <label>Name:</label><br>
+    <label>Your Name:</label><br>
     <input type="text" name="name" required><br>
 
-    <label>Pick Quiz:</label><br>
-    <button type="submit" name="quiz" value="Science" class="science">Science</button>
-    <button type="submit" name="quiz" value="Number" class="number">Number</button>
+    <label>Pick Your Quiz:</label><br>
+    <button type="submit" name="quiz" value="Science" class="science">Science Quiz</button>
+    <button type="submit" name="quiz" value="Number" class="number">Number Quiz</button>
 </form>
 </div>
 </body>

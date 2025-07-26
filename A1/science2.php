@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $incorrectCount = 0;
 
     for ($i = 0; $i < count($correct_answers); $i++) {
-        if (strcasecmp(trim($answers[$i]), trim($correct_answers[$i])) == 0) {
+        if ($answers[$i] === $correct_answers[$i]) {
             $correctCount++;
         } else {
             $incorrectCount++;
@@ -26,15 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Otherwise show quiz questions
+// Prepare quiz questions with True/False answers
 $science_qts = array(
-  array('qts' => 'What planet is known as the Red Planet?', 'ans' => 'Mars'),
-  array('qts' => 'What is the boiling point of water?', 'ans' => '100°C'),
-  array('qts' => 'What is the chemical symbol for water?', 'ans' => 'H2O'),
-  array('qts' => 'How many legs does a spider have?', 'ans' => '8'),
-  array('qts' => 'How many bones are in the human body?', 'ans' => '206'),
-  array('qts' => 'How many teeth does an adult human have?', 'ans' => '32'),
-  array('qts' => 'What is the hardest natural substance on Earth?', 'ans' => 'Diamond')
+  array('qts' => 'Mars is known as the Red Planet.', 'ans' => 'True'),
+  array('qts' => 'The boiling point of water is 50°C.', 'ans' => 'False'),
+  array('qts' => 'H2O is the chemical symbol for water.', 'ans' => 'True'),
+  array('qts' => 'A spider has six legs.', 'ans' => 'False'),
+  array('qts' => 'The human body has 206 bones.', 'ans' => 'True'),
+  array('qts' => 'An adult human has 40 teeth.', 'ans' => 'False'),
+  array('qts' => 'Diamond is the hardest natural substance on Earth.', 'ans' => 'True')
 );
 
 $keys = array_rand($science_qts, 3);
@@ -62,11 +62,8 @@ foreach ($keys as $k) {
         margin: auto;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    input[type=text] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
+    .question {
+        margin-bottom: 20px;
     }
     button {
         padding: 10px 20px;
@@ -80,16 +77,22 @@ foreach ($keys as $k) {
 </head>
 <body>
 <div class="container">
-  <h2>Welcome, <?= htmlspecialchars($name) ?></h2>
-  <h3>Science Questions</h3>
+  <h2>Welcome to Science Quiz, <?= htmlspecialchars($name) ?></h2>
+  <h3>Your Questions :</h3>
   <form method="post">
-    <?php foreach ($questions as $q): ?>
-      <p><strong><?= htmlspecialchars($q['qts']) ?></strong></p>
-      <input type="text" name="answer[]" required>
-      <input type="hidden" name="correct_ans[]" value="<?= htmlspecialchars($q['ans']) ?>">
+    <?php foreach ($questions as $index => $q): ?>
+      <div class="question">
+        <p><strong><?= htmlspecialchars($q['qts']) ?></strong></p>
+        <label>
+          <input type="radio" name="answer[<?= $index ?>]" value="True" required> True
+        </label>
+        <label>
+          <input type="radio" name="answer[<?= $index ?>]" value="False" required> False
+        </label>
+        <input type="hidden" name="correct_ans[<?= $index ?>]" value="<?= htmlspecialchars($q['ans']) ?>">
+      </div>
     <?php endforeach; ?>
-    <br>
-    <button type="submit">Submit Answers</button>
+    <button type="submit">Submit</button>
   </form>
 </div>
 </body>
